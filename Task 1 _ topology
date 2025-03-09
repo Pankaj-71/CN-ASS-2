@@ -38,18 +38,15 @@ def customTopology():
     # Start the network
     net.start()
 
-    # Run server on H7
-    h7.cmd('python3 -m http.server 5000 &')
-
-    # Connect clients (H1-H6) to server (H7)
-    for client in [h1, h2, h3, h4, h5, h6]:
-        client.cmd(f'curl http://{h7.IP()}:5000 &')
-
-    # Keep the network running
-    input("Press Enter to stop...")
+    print("Mininet topology is running. Use 'pingall' to test connectivity.")
+    
+    input("Press Enter to stop the network...")
+    
+    # Stop the network
     net.stop()
 
 if __name__ == '__main__':
-    setLogLevel('info')
+    setLogLevel('info')  # Set Mininet log level to 'info'
     customTopology()
+
 
